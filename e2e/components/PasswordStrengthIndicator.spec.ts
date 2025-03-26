@@ -16,28 +16,28 @@ test.describe("PasswordStrengthIndicator Component", () => {
       strengthLevel: 0,
     },
     {
-      name: "very-weak",
+      name: "weak",
       url: "/iframe.html?id=password-validation-library--password-strength-indicator-story&args=password:a&viewMode=story",
       expectedLabel: "Weak",
       expectedBarWidth: "25%",
       strengthLevel: 1,
     },
     {
-      name: "weak",
+      name: "medium",
       url: "/iframe.html?id=password-validation-library--password-strength-indicator-story&args=password:abc123&viewMode=story",
-      expectedLabel: "Strong",
+      expectedLabel: "Medium",
       expectedBarWidth: "50%",
       strengthLevel: 2,
     },
     {
-      name: "medium",
-      url: "/iframe.html?id=password-validation-library--password-strength-indicator-story&args=password:Abc123!&viewMode=story",
-      expectedLabel: "Very Strong",
+      name: "strong",
+      url: "/iframe.html?id=password-validation-library--password-strength-indicator-story&args=password:abc12345&viewMode=story",
+      expectedLabel: "Strong",
       expectedBarWidth: "75%",
       strengthLevel: 3,
     },
     {
-      name: "strong",
+      name: "very-strong",
       url: "/iframe.html?id=password-validation-library--password-strength-indicator-story&args=password:Test12@!&viewMode=story",
       expectedLabel: "Very Strong",
       expectedBarWidth: "100%",
@@ -88,11 +88,13 @@ test.describe("PasswordStrengthIndicator Component", () => {
       });
 
       const strengthLabel = page.locator('[data-testid="strength-label"]');
+
       await expect(strengthLabel).toHaveText(scenario.expectedLabel);
 
       const strengthBar = page.locator('[data-testid="strength-gradient-bar"]');
 
       const styleAttribute = await strengthBar.getAttribute("style");
+
       expect(styleAttribute).not.toBeNull();
 
       if (scenario.strengthLevel > 0) {

@@ -42,7 +42,12 @@ const PasswordInput: FC<IPasswordInputProps> = memo(
 
     return (
       <Container className={className}>
-        <Label htmlFor={id}>{label}</Label>
+        <Label 
+          htmlFor={id}
+          data-testid={`${testId}-label`}
+        >
+          {label}
+        </Label>
         <InputWrapper>
           <Input
             data-testid={testId}
@@ -56,6 +61,7 @@ const PasswordInput: FC<IPasswordInputProps> = memo(
           />
           <VisibilityToggle
             type="button"
+            data-testid={`${testId}-toggle`}
             onClick={togglePasswordVisibility}
             aria-label={
               showPassword
@@ -67,7 +73,9 @@ const PasswordInput: FC<IPasswordInputProps> = memo(
           </VisibilityToggle>
         </InputWrapper>
         {error && (
-          <ErrorMessage>
+          <ErrorMessage 
+            data-testid={`${testId}-error`}
+          >
             <ErrorIcon /> {error.message}
           </ErrorMessage>
         )}

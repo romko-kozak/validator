@@ -76,6 +76,10 @@ export const StrengthStatusBar = styled.div<{
 
   ${({ strength }) => {
     switch (true) {
+      case strength === 0:
+        return `
+          background: transparent;
+        `;
       case strength <= 1:
         return `
           background: linear-gradient(135deg, #FF6B6B, #FF4757);

@@ -33,16 +33,9 @@ test.describe("PasswordValidator Component", () => {
       }
     );
 
-    try {
-      await page.waitForSelector('[data-testid="password-validator-form"]', {
-        timeout: 5000,
-      });
-    } catch (error) {
-      console.log(
-        "Could not find password-validator-form, looking for any form element"
-      );
-      await page.waitForSelector("form", { timeout: 5000 });
-    }
+    await page.waitForSelector('[data-testid="password-validator-form"]', {
+      timeout: 5000,
+    });
   });
 
   test("should render with all required form elements", async ({ page }) => {
@@ -50,62 +43,30 @@ test.describe("PasswordValidator Component", () => {
       path: "playwright-report/validator-initial-state.png",
     });
 
-    try {
-      const form = page.locator(
-        '[data-testid="password-validator-form"], form'
-      );
-      await expect(form).toBeVisible();
+    const passwordInput = page.locator('[data-testid="password-input"]');
+    const confirmPasswordInput = page.locator(
+      '[data-testid="confirm-password-input"]'
+    );
+    const submitButton = page.locator('[data-testid="submit-button"]');
+    const passwordRules = page.locator('[data-testid="password-rules"]');
+    const strengthIndicator = page.locator(
+      '[data-testid="password-strength-indicator"]'
+    );
 
-      const passwordInput = page
-        .locator(
-          '[data-testid="password-input"], input[id="password"], input[placeholder*="password" i]'
-        )
-        .first();
-      await expect(passwordInput).toBeVisible();
+    await expect(passwordInput).toBeVisible();
+    await expect(confirmPasswordInput).toBeVisible();
+    await expect(submitButton).toBeVisible();
+    await expect(passwordRules).toBeVisible();
+    await expect(strengthIndicator).toBeVisible();
 
-      const confirmPasswordInput = page
-        .locator(
-          '[data-testid="confirm-password-input"], input[id="confirmPassword"], input[placeholder*="confirm" i]'
-        )
-        .first();
-      await expect(confirmPasswordInput).toBeVisible();
-
-      const strengthIndicator = page.locator(
-        '[data-testid="password-strength-indicator"], div:has(> div[class*="strength"]), div:has(> div[class*="indicator"])'
-      );
-      await expect(strengthIndicator).toBeVisible();
-
-      const passwordRules = page.locator(
-        '[data-testid="password-rules"], ul, ol'
-      );
-      await expect(passwordRules).toBeVisible();
-
-      const submitButton = page.locator(
-        '[data-testid="submit-button"], button[type="submit"]'
-      );
-      await expect(submitButton).toBeVisible();
-
-      const buttonText = await submitButton.textContent();
-      expect(buttonText?.toLowerCase()).toContain("password");
-    } catch (error) {
-      console.error("Error in component structure test:", error);
-      await page.screenshot({
-        path: "playwright-report/validator-structure-test-failure.png",
-      });
-      throw error;
-    }
+    const buttonText = await submitButton.textContent();
+    expect(buttonText?.toLowerCase()).toContain("password");
   });
 
   test("should validate password requirements", async ({ page }) => {
     try {
-      const passwordInput = page
-        .locator(
-          '[data-testid="password-input"] input, input[id="password"], input[placeholder*="password" i]'
-        )
-        .first();
-      const submitButton = page
-        .locator('[data-testid="submit-button"], button[type="submit"]')
-        .first();
+      const passwordInput = page.locator('[data-testid="password-input"]');
+      const submitButton = page.locator('[data-testid="submit-button"]');
 
       await expect(passwordInput).toBeVisible();
       await expect(submitButton).toBeVisible();
@@ -118,10 +79,7 @@ test.describe("PasswordValidator Component", () => {
         path: "playwright-report/validator-too-short.png",
       });
 
-      const minLengthRule = page
-        .locator("ul li, ol li")
-        .filter({ hasText: /8 characters/i });
-
+      const minLengthRule = page.locator('[data-testid="min-length-rule"]');
       if ((await minLengthRule.count()) > 0) {
         const hasPassedClass = await minLengthRule.first().evaluate((el) => {
           return el.className.includes("pass");
@@ -139,7 +97,7 @@ test.describe("PasswordValidator Component", () => {
         path: "playwright-report/validator-valid-password.png",
       });
 
-      const allRules = page.locator("ul li, ol li");
+      const allRules = page.locator('[data-testid="password-rules"] li');
       const ruleCount = await allRules.count();
 
       if (ruleCount > 0) {
@@ -172,11 +130,7 @@ test.describe("PasswordValidator Component", () => {
     page,
   }) => {
     try {
-      const passwordInput = page
-        .locator(
-          '[data-testid="password-input"] input, input[id="password"], input[placeholder*="password" i]'
-        )
-        .first();
+      const passwordInput = page.locator('[data-testid="password-input"]');
 
       await page.screenshot({
         path: "playwright-report/validator-strength-initial.png",
@@ -218,9 +172,9 @@ test.describe("PasswordValidator Component", () => {
   });
 
   test("should validate password confirmation match", async ({ page }) => {
-    const passwordInput = page.locator('[data-testid="password-input"] input');
+    const passwordInput = page.locator('[data-testid="password-input"]');
     const confirmPasswordInput = page.locator(
-      '[data-testid="confirm-password-input"] input'
+      '[data-testid="confirm-password-input"]'
     );
     const submitButton = page.locator('[data-testid="submit-button"]');
 
@@ -235,7 +189,7 @@ test.describe("PasswordValidator Component", () => {
 
     try {
       const errorMessages = page.locator(
-        '[data-testid="confirm-password-input"] ~ div, [data-testid="confirm-password-input"] + div, [data-testid="confirm-password-input"] div[role="alert"]'
+        '[data-testid="confirm-password-error"]'
       );
       const hasError = (await errorMessages.count()) > 0;
 
@@ -274,9 +228,9 @@ test.describe("PasswordValidator Component", () => {
   });
 
   test("should allow submission with valid data", async ({ page }) => {
-    const passwordInput = page.locator('[data-testid="password-input"] input');
+    const passwordInput = page.locator('[data-testid="password-input"]');
     const confirmPasswordInput = page.locator(
-      '[data-testid="confirm-password-input"] input'
+      '[data-testid="confirm-password-input"]'
     );
     const submitButton = page.locator('[data-testid="submit-button"]');
 
@@ -315,9 +269,9 @@ test.describe("PasswordValidator Component", () => {
       },
     });
 
-    const passwordInput = page.locator('[data-testid="password-input"] input');
+    const passwordInput = page.locator('[data-testid="password-input"]');
     const confirmPasswordInput = page.locator(
-      '[data-testid="confirm-password-input"] input'
+      '[data-testid="confirm-password-input"]'
     );
 
     await passwordInput.fill(testPasswords.valid);
@@ -336,10 +290,12 @@ test.describe("PasswordValidator Component", () => {
   });
 
   test("should have accessible form elements", async ({ page }) => {
-    const passwordLabel = page.locator('label[for="password"]');
+    const passwordLabel = page.locator('[data-testid="password-input-label"]');
     await expect(passwordLabel).toBeVisible();
 
-    const confirmPasswordLabel = page.locator('label[for="confirmPassword"]');
+    const confirmPasswordLabel = page.locator(
+      '[data-testid="confirm-password-input-label"]'
+    );
     await expect(confirmPasswordLabel).toBeVisible();
 
     const submitButton = page.locator('[data-testid="submit-button"]');

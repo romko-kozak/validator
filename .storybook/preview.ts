@@ -3,7 +3,7 @@ import "../src/index.css";
 
 const preview: Preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: {},
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -16,23 +16,23 @@ const preview: Preview = {
         inline: true,
       },
       canvas: {
-        sourceState: 'shown',
+        sourceState: "shown",
       },
     },
     backgrounds: {
-      default: 'light',
+      default: "light",
       values: [
         {
-          name: 'light',
-          value: '#f8f9fa',
+          name: "light",
+          value: "#f8f9fa",
         },
         {
-          name: 'dark',
-          value: '#212529',
+          name: "dark",
+          value: "#212529",
         },
       ],
     },
-    layout: 'centered',
+    layout: "centered",
   },
 };
 

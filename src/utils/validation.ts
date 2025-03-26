@@ -60,7 +60,7 @@ export type PasswordFormData = z.infer<typeof passwordFormSchema>;
  */
 export const checkPasswordRules = (password: string) => {
   return {
-    minLength: password?.length >= 6,
+    minLength: password?.length >= 8,
     hasUppercase: /[A-Z]/.test(password),
     hasLowercase: /[a-z]/.test(password),
     hasNumber: /[0-9]/.test(password),
@@ -84,13 +84,14 @@ export const calculatePasswordStrength = (password: string): number => {
 
   const rules = checkPasswordRules(password);
   const passedRules = Object.values(rules).filter(Boolean).length;
-
   // Additional strength factors
   let extraPoints = 0;
+
   if (password.length > 10) extraPoints += 0.5;
   if (password.length > 14) extraPoints += 0.5;
 
   const strength = Math.min(4, passedRules + extraPoints);
+
   return Math.max(0, strength);
 };
 
@@ -102,5 +103,6 @@ export const calculatePasswordStrength = (password: string): number => {
  */
 export const getStrengthLabel = (strength: number): string => {
   const labels = ["Very Weak", "Weak", "Medium", "Strong", "Very Strong"];
+
   return labels[Math.floor(strength)];
 };

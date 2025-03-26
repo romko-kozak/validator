@@ -70,7 +70,12 @@ export const PasswordRules: FC<IPasswordRules> = React.memo(
 
     const renderRuleItem = useCallback(
       (rule: { label: string; passed: boolean }) => (
-        <RuleItem key={rule.label} passed={rule.passed}>
+        <RuleItem
+          key={rule.label}
+          passed={rule.passed}
+          data-testid={`${rule.label}-rule`}
+          className={rule.passed ? "passed" : "failed"}
+        >
           <RuleIcon passed={rule.passed}>
             {rule.passed ? <CheckIcon /> : <XIcon />}
           </RuleIcon>
@@ -81,11 +86,15 @@ export const PasswordRules: FC<IPasswordRules> = React.memo(
     );
 
     return (
-      <Container className={className} data-testid="password-rules">
-        <Header>
-          <Title>Password Requirements</Title>
+      <Container className={className} data-testid="password-rules-container">
+        <Header data-testid="password-rules-header">
+          <Title data-testid="password-rules-title">
+            Password Requirements
+          </Title>
         </Header>
-        <RulesList>{ruleItems.map(renderRuleItem)}</RulesList>
+        <RulesList data-testid="password-rules">
+          {ruleItems.map(renderRuleItem)}
+        </RulesList>
       </Container>
     );
   }

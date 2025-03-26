@@ -35,11 +35,11 @@ test.describe("PasswordRules Component", () => {
   test("should render the password requirements header", async ({ page }) => {
     await page.goto(testScenarios[0].url);
 
-    const header = page.locator('[data-testid="password-rules"] header');
+    const header = page.locator('[data-testid="password-rules-header"]');
     await expect(header).toBeVisible();
 
     const title = page
-      .locator('[data-testid="password-rules"] header')
+      .locator('[data-testid="password-rules-title"]')
       .getByText("Password Requirements");
     await expect(title).toBeVisible();
   });
@@ -106,7 +106,7 @@ test.describe("PasswordRules Component", () => {
   test("should have accessible color contrast for rule items", async ({
     page,
   }) => {
-    await page.goto(testScenarios[2].url); // Using strong password scenario
+    await page.goto(testScenarios[2].url);
 
     const passedRules = page.locator(
       '[data-testid="password-rules"] li[class*="passed"]'
