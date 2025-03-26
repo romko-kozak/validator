@@ -10,6 +10,10 @@ import {
 export const Container = styled.div`
   width: 100%;
   margin-bottom: ${spacing.md};
+
+  @media (max-height: 670px) {
+    margin-bottom: ${spacing.xs};
+  }
 `;
 
 export const Label = styled.label`

@@ -48,6 +48,13 @@ export const Container = styled.div`
       transform: none;
     }
   }
+
+  @media (max-height: 670px) {
+    ${Form} {
+      transform: none;
+      gap: ${spacing.xs};
+    }
+  }
 `;
 
 export const Label = styled.label`

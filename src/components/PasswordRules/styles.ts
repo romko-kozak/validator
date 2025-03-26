@@ -20,6 +20,10 @@ const bouncyX = keyframes`
 export const Container = styled.div`
   width: 100%;
   margin-bottom: ${spacing.md};
+
+  @media (max-height: 450px) {
+    display: none;
+  }
 `;
 
 export const Header = styled.div`
