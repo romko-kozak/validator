@@ -54,21 +54,39 @@ Explore the following key features that set our password validation solution apa
 </tr>
 </table>
 
-## Installation
+## 🚀 Getting Started
 
-Getting started with the Password Validation library is straightforward. The package is available through npm and yarn, making it easy to integrate into your existing React projects. The library has minimal dependencies and is optimized for performance, ensuring it won't bloat your application.
+### Prerequisites
+- Node.js (v18.x or later)
+- npm (v9.x or later)
 
-> **⚠️ Note**: This is a placeholder installation guide. The library is currently not published to npm and these commands are for future reference.
-
-Choose your preferred package manager and run one of the following commands:
-
+### Local Development
+1. Clone the repository
 ```bash
-npm install password-validator
-# or
-yarn add password-validator
+git clone https://github.com/yourusername/password-validator.git
+cd password-validator
 ```
 
-**Important**: Until the library is officially published, you can use it directly from the GitHub repository by cloning the project and linking it locally.
+2. Install dependencies
+```bash
+npm install
+```
+
+## 📦 Available Scripts
+
+In the project directory, you can run the following scripts:
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Starts the development server using Vite |
+| `npm run build` | Builds the project for production |
+| `npm run preview` | Serves the production build locally |
+| `npm run test` | Runs unit and integration tests |
+| `npm run test:e2e` | Runs end-to-end Playwright tests |
+| `npm run lint` | Runs ESLint to check code quality |
+| `npm run format` | Formats code using Prettier |
+| `npm run storybook` | Starts Storybook for component development |
+| `npm run build-storybook` | Builds Storybook for static deployment |
 
 ## Usage
 
@@ -168,7 +186,28 @@ The Password Validation library follows a modular component-based architecture, 
 </tr>
 </table>
 
-> **Note**: Images are sourced from the project's public/assets/docs-img directory.
+## 🧪 Testing
+
+### Unit & Integration Tests
+We use Jest for unit and integration testing. Run tests with:
+```bash
+npm run test
+```
+
+### End-to-End Tests
+We use Playwright for end-to-end testing. Run E2E tests with:
+```bash
+npm run test:e2e
+```
+
+## 📘 Storybook
+
+Explore our component library and design system in Storybook. Start Storybook with:
+```bash
+npm run storybook
+```
+
+This will open an interactive development environment where you can view and interact with individual components in isolation.
 
 ## 💡 Best Practices
 
