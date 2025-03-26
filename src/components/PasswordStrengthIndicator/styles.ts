@@ -9,6 +9,10 @@ import {
 export const Container = styled.div`
   width: 100%;
   margin-bottom: ${spacing.sm};
+
+  @media (max-height: 740px) {
+    display: none;
+  }
 `;
 
 export const Header = styled.header`

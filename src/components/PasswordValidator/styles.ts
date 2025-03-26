@@ -18,6 +18,11 @@ export const Form = styled.form`
   border-radius: 25px;
   box-shadow: -10px -10px 20px rgba(255, 255, 255, 1),
     10px 10px 20px rgba(174, 174, 192, 0.3);
+
+  @media (max-width: 575px) {
+    width: calc(100vw - 2 * ${spacing.sm});
+    min-width: 320px;
+  }
 `;
 
 export const Container = styled.div`
@@ -34,6 +39,14 @@ export const Container = styled.div`
 
   ${Form} {
     transform: translateY(-10%);
+  }
+
+  @media (max-width: 575px) {
+    padding: 0 ${spacing.sm};
+
+    ${Form} {
+      transform: none;
+    }
   }
 `;
 
