@@ -49,7 +49,7 @@ const PasswordInput: FC<IPasswordInputProps> = memo(
           <Input
             data-testid={testId}
             id={id}
-            error={error}
+            $error={error}
             type={showPassword ? "text" : "password"}
             placeholder={placeholder}
             onChange={onChange}

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { FieldError } from "react-hook-form";
-import { 
-  spacing, 
-  fontSize, 
+import {
+  spacing,
+  fontSize,
   fontFamily,
-  gradientText
+  gradientText,
 } from "../../styles/variables";
 
 export const Container = styled.div`
@@ -27,7 +27,7 @@ export const InputWrapper = styled.div`
   width: 100%;
 `;
 
-export const Input = styled.input<{ error?: FieldError }>`
+export const Input = styled.input<{ $error?: FieldError }>`
   width: 100%;
   padding: ${spacing.sm};
   border: none;
@@ -50,8 +50,8 @@ export const Input = styled.input<{ error?: FieldError }>`
     color: #aaa;
   }
 
-  ${({ error }) =>
-    error &&
+  ${({ $error }) =>
+    $error &&
     `
     box-shadow: 
       inset -5px -5px 10px rgba(255, 255, 255, 0.6),
@@ -80,7 +80,7 @@ export const VisibilityToggle = styled.button`
   &:hover {
     transform: translateX(2px);
   }
-  
+
   &:focus {
     outline: none;
   }
@@ -96,7 +96,7 @@ export const ErrorMessage = styled.div<{ type?: "success" | "error" }>`
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: ${fontFamily.primary};
-  
+
   svg {
     margin-right: ${spacing.xs};
   }
