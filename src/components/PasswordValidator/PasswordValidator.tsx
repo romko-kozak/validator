@@ -75,6 +75,8 @@ export const PasswordValidator: FC<IPasswordValidator> = memo(
         <Form
           onSubmit={handleSubmit(handleFormSubmit)}
           data-testid="password-validator-form"
+          aria-labelledby="password-form-title"
+          noValidate
         >
           <PasswordInput {...passwordInputProps} />
           <PasswordInput {...confirmPasswordInputProps} />

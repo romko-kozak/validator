@@ -42,10 +42,7 @@ const PasswordInput: FC<IPasswordInputProps> = memo(
 
     return (
       <Container className={className}>
-        <Label 
-          htmlFor={id}
-          data-testid={`${testId}-label`}
-        >
+        <Label htmlFor={id} data-testid={`${testId}-label`}>
           {label}
         </Label>
         <InputWrapper>
@@ -73,10 +70,13 @@ const PasswordInput: FC<IPasswordInputProps> = memo(
           </VisibilityToggle>
         </InputWrapper>
         {error && (
-          <ErrorMessage 
+          <ErrorMessage
             data-testid={`${testId}-error`}
+            role="alert"
+            aria-live="polite"
+            aria-describedby="password-error"
           >
-            <ErrorIcon /> {error.message}
+            <ErrorIcon aria-hidden="true" /> {error.message}
           </ErrorMessage>
         )}
       </Container>

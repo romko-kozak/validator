@@ -72,11 +72,11 @@ export const PasswordRules: FC<IPasswordRules> = React.memo(
       (rule: { label: string; passed: boolean }) => (
         <RuleItem
           key={rule.label}
-          passed={rule.passed}
+          $passed={rule.passed}
           data-testid={`${rule.label}-rule`}
           className={rule.passed ? "passed" : "failed"}
         >
-          <RuleIcon passed={rule.passed}>
+          <RuleIcon $passed={rule.passed}>
             {rule.passed ? <CheckIcon /> : <XIcon />}
           </RuleIcon>
           {rule.label}

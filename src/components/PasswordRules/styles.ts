@@ -43,18 +43,18 @@ export const RulesList = styled.ul`
   margin: 0;
 `;
 
-export const RuleItem = styled.li<{ passed: boolean }>`
+export const RuleItem = styled.li<{ $passed: boolean }>`
   display: flex;
   align-items: center;
   font-size: ${fontSize.xs};
   font-weight: 600;
-  color: ${({ passed }) => (passed ? "#4CAF50" : "#EF4444")};
+  color: ${({ $passed }) => ($passed ? "#4CAF50" : "#EF4444")};
   margin-bottom: ${spacing.xs};
   font-family: ${fontFamily.primary};
   padding: 2px ${spacing.xs};
 `;
 
-export const RuleIcon = styled.span<{ passed: boolean }>`
+export const RuleIcon = styled.span<{ $passed: boolean }>`
   margin-right: ${spacing.sm};
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@ export const RuleIcon = styled.span<{ passed: boolean }>`
 
   svg {
     transition: all 0.3s ease;
-    animation: ${({ passed }) => (passed ? bouncyCheck : bouncyX)} 0.5s
+    animation: ${({ $passed }) => ($passed ? bouncyCheck : bouncyX)} 0.5s
       ease-in-out;
   }
 `;

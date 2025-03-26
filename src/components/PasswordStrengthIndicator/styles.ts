@@ -49,7 +49,7 @@ export const StrengthBar = styled.div`
 `;
 
 export const StrengthStatusBar = styled.div<{
-  strength: number;
+  $strength: number;
   width: number;
 }>`
   position: absolute;
@@ -65,30 +65,30 @@ export const StrengthStatusBar = styled.div<{
   opacity: 1;
 
   /* Add strength level classes for tests */
-  ${({ strength }) => {
+  ${({ $strength }) => {
     return `
-      &.strength-${strength} {}
-      &.level-${strength} {}
+      &.strength-${$strength} {}
+      &.level-${$strength} {}
       &.strength {}
       &.level {}
     `;
   }}
 
-  ${({ strength }) => {
+  ${({ $strength }) => {
     switch (true) {
-      case strength === 0:
+      case $strength === 0:
         return `
           background: transparent;
         `;
-      case strength <= 1:
+      case $strength <= 1:
         return `
           background: linear-gradient(135deg, #FF6B6B, #FF4757);
         `;
-      case strength <= 2:
+      case $strength <= 2:
         return `
           background: linear-gradient(135deg, #FFD93D, #FF9130);
         `;
-      case strength <= 3:
+      case $strength <= 3:
         return `
           background: linear-gradient(135deg, #6BCB77, #4CAF50);
         `;
