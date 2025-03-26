@@ -20,6 +20,25 @@ const preview: Preview = {
         ],
       },
     },
+    viewport: {
+      defaultViewport: 'largeScreen',
+      viewports: {
+        largeScreen: {
+          name: 'Large Screen',
+          styles: {
+            width: '1080px',
+            height: '800px',
+          },
+        },
+        mobile: {
+          name: 'Mobile',
+          styles: {
+            width: '375px',
+            height: '667px',
+          },
+        },
+      },
+    },
     docs: {
       toc: true,
       story: {

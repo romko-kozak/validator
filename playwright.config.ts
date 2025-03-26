@@ -10,6 +10,7 @@ export default defineConfig({
   use: {
     trace: "on-first-retry",
     screenshot: "only-on-failure",
+    viewport: { width: 1080, height: 800 },  
   },
   projects: [
     {
@@ -17,6 +18,7 @@ export default defineConfig({
       use: { 
         ...devices["Desktop Chrome"],
         baseURL: "http://localhost:5173",
+        viewport: { width: 1080, height: 800 },
       },
       testMatch: /password-validator\.spec\.ts/,
     },
@@ -25,6 +27,7 @@ export default defineConfig({
       use: { 
         ...devices["Desktop Firefox"],
         baseURL: "http://localhost:5173",
+        viewport: { width: 1080, height: 800 },
       },
       testMatch: /password-validator\.spec\.ts/,
     },
@@ -33,6 +36,7 @@ export default defineConfig({
       use: { 
         ...devices["Desktop Safari"],
         baseURL: "http://localhost:5173",
+        viewport: { width: 1080, height: 800 },
       },
       testMatch: /password-validator\.spec\.ts/,
     },
@@ -41,6 +45,7 @@ export default defineConfig({
       use: { 
         ...devices["Desktop Chrome"],
         baseURL: "http://localhost:6006",
+        viewport: { width: 1080, height: 800 },
       },
       testMatch: /components\/.*\.spec\.ts/,
     },
@@ -49,6 +54,7 @@ export default defineConfig({
       use: { 
         ...devices["Desktop Firefox"],
         baseURL: "http://localhost:6006",
+        viewport: { width: 1080, height: 800 },
       },
       testMatch: /components\/.*\.spec\.ts/,
     },
@@ -57,6 +63,7 @@ export default defineConfig({
       use: { 
         ...devices["Desktop Safari"],
         baseURL: "http://localhost:6006",
+        viewport: { width: 1080, height: 800 },
       },
       testMatch: /components\/.*\.spec\.ts/,
     },
